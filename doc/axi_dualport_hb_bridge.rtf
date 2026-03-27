@@ -1,0 +1,23 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2868
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww15440\viewh9540\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Refer the repo at https://github.com/GhlHub/hyperbus_controller.git as a reference.\
+\
+Design a axi bridge that has the following:\
+	One axi-full slave with 64-bit wide data bus, supporting up to 32 beats, \
+	Two axi-full master with 32-bit wide data bus. It is safe to assume that for writes there will be no back-pressure from the attached axi slave. It is safe to assume that for reads, there will be no throttling from the attached axi slave.\
+\
+Assume the clock frequency for both axi master and slave is 50 MHz.\
+Assume the hb_ck frequency is 200 MHz\
+\
+Transactions from the axi-full slave should be forwarded to the two hyperbus controllers attached to the two axi-master ports\
+Axi data [31:0] to one attached hyperbus controller, axi data [63:32] to the other hyperbus controller.\
+\
+Although transactions should be submitted in parallel to the two hyperbus controller, the responses may be out of phase by one clock due to cross clock domain crossings in the two  hyperbus controllers.\
+\
+\
+}
