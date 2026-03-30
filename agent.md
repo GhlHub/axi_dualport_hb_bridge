@@ -30,6 +30,10 @@ Addressing is scaled by `addr >> 1` when forwarded to each 32-bit master so a
 
 - `rtl/axi_dualport_hb_bridge.sv`
   - bridge RTL
+- `package_ip_core.tcl`
+  - Vivado batch packager that builds `ip_repo/axi_dualport_hb_bridge/`
+- `ip_repo/axi_dualport_hb_bridge/`
+  - generated packaged IP repository for Vivado discovery
 - `tb/axi_dualport_hb_bridge_tb.sv`
   - self-checking simulation
 - `tb/axi32_ram_model.sv`
@@ -64,6 +68,12 @@ verilator --lint-only -Wall --timing \
   tb/axi_dualport_hb_bridge_tb.sv
 ```
 
+Vivado packaging:
+
+```bash
+vivado -mode batch -source package_ip_core.tcl
+```
+
 ## Integration Assumptions
 
 - AXI clock is expected to be 50 MHz, matching the RTF request
@@ -75,6 +85,7 @@ verilator --lint-only -Wall --timing \
 
 - Preserve the lane mapping unless the memory striping model is intentionally
   changed system-wide
+- If the RTL interface changes, rerun `package_ip_core.tcl` so `ip_repo/axi_dualport_hb_bridge/component.xml` stays aligned with the source
 - If narrow master transactions are added later, update both the bridge RTL and
   the memory model/testbench to exercise `AWSIZE`/`ARSIZE` changes explicitly
 - If multiple outstanding transactions are added, revisit response tracking and

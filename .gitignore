@@ -1,0 +1,15 @@
+# Vivado transient outputs
+.Xil/
+vivado.jou
+vivado.log
+vivado_*.backup.jou
+vivado_*.backup.log
+
+# XSim transient outputs
+xsim.jou
+xsim.log
+xsim_*.backup.jou
+xsim_*.backup.log
+xsim.dir/
+xvlog.pb
+xelab.pb

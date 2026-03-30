@@ -43,6 +43,8 @@ The forwarded address is scaled by `addr >> 1` for both masters so the two
 
 - `rtl/axi_dualport_hb_bridge.sv`
   - main bridge RTL
+- `package_ip_core.tcl`
+  - Vivado batch flow that packages the bridge under `ip_repo/axi_dualport_hb_bridge/`
 - `tb/axi_dualport_hb_bridge_tb.sv`
   - self-checking simulation
 - `tb/axi32_ram_model.sv`
@@ -81,6 +83,22 @@ Current test coverage includes:
 - 32-beat maximum burst transfers
 - upstream read backpressure
 - one-cycle lane skew on read returns
+
+## IP Packaging
+
+To package the bridge as a Vivado IP repository, run:
+
+```bash
+vivado -mode batch -source package_ip_core.tcl
+```
+
+This creates:
+
+- `ip_repo/axi_dualport_hb_bridge/component.xml`
+- `ip_repo/axi_dualport_hb_bridge/src/axi_dualport_hb_bridge.sv`
+- `ip_repo/axi_dualport_hb_bridge/xgui/`
+
+Vivado projects should add `ip_repo/` to `ip_repo_paths`.
 
 ## Notes
 
